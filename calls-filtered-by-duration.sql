@@ -37,7 +37,7 @@ FROM
 (
 	SELECT *, LAG(dur, 1) OVER ( PARTITION BY ks ORDER BY dt) AS prev_call_dur
 	FROM f
-) as calls
+) AS calls
 WHERE dur > 30 AND prev_call_dur < 5;
 
 /* Output:
