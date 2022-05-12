@@ -35,12 +35,12 @@ INSERT INTO f(idcall, ks, dt, dur) VALUES
 SELECT idcall, ks, dt, dur 
 FROM 
 (
-	SELECT *, LAG(dur, 1) OVER ( PARTITION BY ks ORDER BY dt) as prev_call_dur
+	SELECT *, LAG(dur, 1) OVER ( PARTITION BY ks ORDER BY dt) AS prev_call_dur
 	FROM f
 ) as calls
 WHERE dur > 30 AND prev_call_dur < 5;
 
-/* Output
+/* Output:
  idcall |  ks  |           dt           | dur
 --------+------+------------------------+-----
  130002 | 1001 | 2022-01-01 11:10:00+03 |  40
